@@ -1,0 +1,7 @@
+db_driver_asyncpg: postgresql+asyncpg
+db_driver_psycopg2: postgresql+psycopg2
+user: exam_fastapi_db_user01
+password: VvUYdElq8QzdgYD3
+hostname: localhost
+port: 5432
+db_name: exam_fastapi_db

@@ -1,0 +1,13 @@
+{
+  "files.eol": "\n",
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Path": "./.venv/Lib/site-packages/pflake8",
+  "python.linting.lintOnSave": true,
+  "python.linting.pylintEnabled": false,
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "black",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  }
+}

@@ -1,0 +1,40 @@
+# pyenv-winインストール ※PowerShellで実行
+git clone https://github.com/pyenv-win/pyenv-win.git "$HOME/.pyenv"
+
+# pyenvへの環境変数追加 ※PowerShellで実行
+[System.Environment]::SetEnvironmentVariable('PYENV',$env:USERPROFILE + "\.pyenv\pyenv-win\","User")
+[System.Environment]::SetEnvironmentVariable('PYENV_HOME',$env:USERPROFILE + "\.pyenv\pyenv-win\","User")
+
+# 上記環境変数をpathへ追加
+[System.Environment]::SetEnvironmentVariable('path', $env:USERPROFILE + "\.pyenv\pyenv-win\bin;" + $env:USERPROFILE + "\.pyenv\pyenv-win\shims;" + [System.Environment]::GetEnvironmentVariable('path', "User"),"User")
+
+# 使用するpythonのバージョンをインストール
+pyenv install <python-version>
+
+# poetryインストール ※PowerShellで実行
+(Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python -
+
+# ↓はやるかどうか調査が必要
+# cacert.pemを作成する
+# cd C:\Program Files\Git\usr\bin
+# openssl x509 -in "C:\Users\k4834\Desktop\my_file.cer" -out "C:\Users\k4834\Desktop\cacert.pem"
+
+# ↓はやるかどうか調査が必要
+# poetry install <library>時にSSLエラーが発生するため、
+# C:\Users\k4834\.poetry\lib\poetry\_vendor\py3.10\certifi\cacert.pem を置き換え
+
+# poetry install時にプロジェクトフォルダ内に仮想環境を作成するよう設定
+poetry config virtualenvs.in-project true
+
+# 上記コマンドの結果を確認
+poetry config virtualenvs.in-project --list
+
+# プロジェクトフォルダへ移動
+
+# pyenvにて仮想環境を作成するpythonバージョンを指定
+pyenv global <python-version>
+
+# 仮想環境を作成
+poetry install
+
+# VSCodeにて、pythonのインタプリタを作成された仮想環境内のpython.exeを指定
